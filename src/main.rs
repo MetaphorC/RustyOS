@@ -24,3 +24,5 @@ pub extern "C" fn _start() -> ! {
 
     loop {}
 }
+
+mod vga_buffer;
