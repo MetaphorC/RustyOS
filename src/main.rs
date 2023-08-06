@@ -12,7 +12,7 @@ fn panic(info: &PanicInfo) -> ! {
 
 #[no_mangle]
 pub extern "C" fn _start() {
-    println!("Hello World{}", "!");
+    println!("Xue Hua Piao Piao, Bi Feng Xiao Xiao{}", "!");
     panic!("Some panic message");
     loop {}
 }
