@@ -29,3 +29,7 @@ test-args = [
     "-display", "none"
 ]
 test-timeout = 90                 # (in seconds)
+
+[[test]]
+name = "should_panic"
+harness = false
