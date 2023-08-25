@@ -72,3 +72,4 @@ use x86_64::instructions::port::Port;
 
 pub mod serial;
 pub mod vga_buffer;
+pub mod interrupts;
