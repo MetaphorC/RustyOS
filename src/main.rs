@@ -11,10 +11,17 @@ use rusty_os::println;
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
-    println!("Hellow World{}", "!");
+    println!("Helluwu World{}", "!");
+    
+    rusty_os::init(); 
+
+    // invoke a breakpoint exception
+    x86_64::instructions::interrupts::int3();
 
     #[cfg(test)]
     test_main();
+
+    println!("It did not crash!");
     loop{}
 }
 

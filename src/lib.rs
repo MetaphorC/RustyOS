@@ -43,9 +43,18 @@ pub fn test_panic_handler(info: &PanicInfo) -> ! {
 #[cfg(test)]
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
+    init();
     test_main();
     loop{}
 }
+
+
+#[test_case]
+fn test_breakpoint_exception() {
+    // invoke a breakpoint exception 
+    x86_64::instructions::interrupts::int3();
+}
+
 
 #[cfg(test)]
 #[panic_handler]
@@ -71,6 +80,10 @@ use x86_64::instructions::port::Port;
         port.write(exit_code as u32);
     }
 } 
+
+pub fn init() {
+    interrupts::init_idt();
+}
 
 pub mod serial;
 pub mod vga_buffer;
