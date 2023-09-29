@@ -82,9 +82,11 @@ use x86_64::instructions::port::Port;
 } 
 
 pub fn init() {
+    gdt::init();
     interrupts::init_idt();
 }
 
 pub mod serial;
 pub mod vga_buffer;
 pub mod interrupts;
+pub mod gdt;
