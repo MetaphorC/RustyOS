@@ -6,6 +6,7 @@
 #![feature(abi_x86_interrupt)]
 
 
+extern crate x86_64;
 use core::panic::PanicInfo;
 
 pub trait Testable {
@@ -70,7 +71,7 @@ pub enum QemuExitCode {
     Failed = 0x11,
 }
 
-extern crate x86_64;
+
 
 pub fn exit_qemu(exit_code: QemuExitCode) {
 use x86_64::instructions::port::Port;
@@ -84,6 +85,8 @@ use x86_64::instructions::port::Port;
 pub fn init() {
     gdt::init();
     interrupts::init_idt();
+    unsafe { interrupts::PICS.lock().initialize() }; 
+    x86_64::instructions::interrupts::enable();
 }
 
 pub mod serial;
